@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { Button } from '../components/Button';
@@ -40,6 +40,11 @@ export function Home(){
         if(!roomRef.exists()){
             alert('Room does not exists')
             return;
+        }
+
+        if(roomRef.val().endedAt){
+            alert('Room already closed.')
+            return
         }
 
         history.push(`/rooms/${roomCode}`)
